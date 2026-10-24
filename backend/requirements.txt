@@ -1,0 +1,2 @@
+# Exact transitive dependencies verified together; see docs/DEPENDENCIES.md.
+-r requirements.lock

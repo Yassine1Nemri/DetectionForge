@@ -1,0 +1,47 @@
+{
+  "id": "powershell-encoded-positive",
+  "rule_id": "2918a3bc-8ac1-4c37-8ec2-b7dd523a7e56",
+  "category": "malicious",
+  "technique": "T1059.001",
+  "logsource": {
+    "product": "windows",
+    "category": "process_creation"
+  },
+  "events": [
+    {
+      "id": "ps-encoded",
+      "timestamp": "2026-10-24T10:00:00Z",
+      "fields": {
+        "EventID": 1,
+        "Image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "CommandLine": "powershell.exe -NoProfile -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAGYAaQB4AHQAdQByAGUAJwA=",
+        "Computer": "fixture-win10"
+      }
+    },
+    {
+      "id": "ps-short-switch",
+      "timestamp": "2026-10-24T10:00:02Z",
+      "fields": {
+        "EventID": 1,
+        "Image": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
+        "CommandLine": "pwsh.exe -enc VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAGYAaQB4AHQAdQByAGUAJwA=",
+        "Computer": "fixture-win10"
+      }
+    },
+    {
+      "id": "unrelated-process",
+      "timestamp": "2026-10-24T10:00:03Z",
+      "fields": {
+        "EventID": 1,
+        "Image": "C:\\Windows\\System32\\cmd.exe",
+        "CommandLine": "cmd.exe /c echo -enc example",
+        "Computer": "fixture-win10"
+      }
+    }
+  ],
+  "expected_event_ids": [
+    "ps-encoded",
+    "ps-short-switch"
+  ],
+  "expected_detection": true
+}

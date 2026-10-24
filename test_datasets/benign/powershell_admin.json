@@ -1,0 +1,34 @@
+{
+  "id": "powershell-admin-negative",
+  "rule_id": "2918a3bc-8ac1-4c37-8ec2-b7dd523a7e56",
+  "category": "benign",
+  "technique": "T1059.001",
+  "logsource": {
+    "product": "windows",
+    "category": "process_creation"
+  },
+  "events": [
+    {
+      "id": "ps-services",
+      "timestamp": "2026-10-24T11:00:00Z",
+      "fields": {
+        "EventID": 1,
+        "Image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "CommandLine": "powershell.exe -NoProfile -Command Get-Service",
+        "Computer": "fixture-win10"
+      }
+    },
+    {
+      "id": "ps-inventory",
+      "timestamp": "2026-10-24T11:00:01Z",
+      "fields": {
+        "EventID": 1,
+        "Image": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
+        "CommandLine": "pwsh.exe -File C:\\Admin\\inventory.ps1",
+        "Computer": "fixture-win10"
+      }
+    }
+  ],
+  "expected_event_ids": [],
+  "expected_detection": false
+}

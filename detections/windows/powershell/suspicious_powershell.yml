@@ -1,0 +1,25 @@
+title: Suspicious PowerShell Encoded Command
+id: 2918a3bc-8ac1-4c37-8ec2-b7dd523a7e56
+status: experimental
+description: Detects encoded command switches in PowerShell process creation telemetry. Synthetic fixture scenario; investigate legitimate administrative usage.
+author: DetectionForge
+date: 2026-10-24
+logsource:
+  product: windows
+  category: process_creation
+detection:
+  selection_image:
+    Image|endswith:
+      - '\powershell.exe'
+      - '\pwsh.exe'
+  selection_command:
+    CommandLine|contains:
+      - ' -EncodedCommand '
+      - ' -enc '
+  condition: selection_image and selection_command
+falsepositives:
+  - Legitimate administrative scripts using encoded command arguments
+level: medium
+tags:
+  - attack.execution
+  - attack.t1059.001

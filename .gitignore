@@ -1,0 +1,19 @@
+.env
+.env.*
+!.env.example
+.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+*.py[cod]
+*.db
+*.db-*
+frontend/node_modules/
+frontend/dist/
+frontend/*.tsbuildinfo
+reports/
+# Local workspace metadata and planning brief
+.agents/
+.aws/
+.codex/
+DetectionForge — Codex Master Prompt.md
